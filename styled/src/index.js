@@ -1,8 +1,9 @@
 import React from 'react';
+import md5 from 'md5';
+
 const STYLED_NAMESPACE = 'styled-namespace';
 const e = React.createElement;
 const appended = [];
-const md5 = require('md5');
 
 const appendedScripts = document.head.querySelectorAll(STYLED_NAMESPACE);
 
