@@ -1,6 +1,6 @@
 {
   "name": "react-reusable",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "scripts": {
     "prepublish": "for d in ./*/ ; do (cd \"$d\" && npm run build); done;",
