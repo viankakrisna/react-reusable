@@ -1,12 +1,15 @@
 import React from 'react';
-
+const STYLED_NAMESPACE = 'styled-namespace';
 const e = React.createElement;
 const appended = [];
+const crypto = require('crypto');
+
+const appendedScripts = document.head.querySelectorAll(STYLED_NAMESPACE);
 
 //styled-components wannabe! take a component
 export default function styled(Component) {
 	//then create tagged template literal for that component
-	return memoize(function createStyled(css, ...exp) {
+	return function createStyled(css, ...exp) {
 		//return a named function, easier to debug in the stack trace
 		return function styledComponent(props) {
 			const interpolatedCSS = css.raw.reduce(
@@ -30,7 +33,7 @@ export default function styled(Component) {
 				})
 			);
 		};
-	});
+	};
 }
 
 export function keyframes(css) {
@@ -42,6 +45,7 @@ export function keyframes(css) {
 }
 
 function renderStyle(className, interpolatedCSS) {
+	console.log(className);
 	//only append the style in the head if it's not there
 	const styleAppended = appended.includes(className);
 	if (!styleAppended) {
@@ -49,6 +53,7 @@ function renderStyle(className, interpolatedCSS) {
 		const style = document.createElement('style');
 		style.innerHTML = interpolatedCSS.replace(/&/g, '.' + className);
 		style.id = className;
+		style.className = STYLED_NAMESPACE;
 
 		//append it!
 		document.head.insertBefore(style, document.head.firstChild);
@@ -74,24 +79,5 @@ function createRawCSSReducer(exp, props) {
 }
 
 function createHashFromString(str) {
-	var hash = 0;
-	var i;
-	var char;
-	for (i = 0; i < str.length; i++) {
-		char = str.charCodeAt(i);
-		hash += char;
-	}
-	return hash;
-}
-
-function memoize(func) {
-	var memo = {};
-	var slice = Array.prototype.slice;
-
-	return function() {
-		var args = slice.call(arguments);
-
-		if (args in memo) return memo[args];
-		else return (memo[args] = func.apply(this, args));
-	};
+	return crypto.createHash('md5').update(str).digest('hex');
 }

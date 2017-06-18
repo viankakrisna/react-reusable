@@ -1,10 +1,12 @@
 module.exports = {
-  type: 'web-module',
+  type: 'react-component',
   npm: {
     esModules: true,
     umd: {
       global: 'styled',
-      externals: {}
+      externals: {
+        react: 'React'
+      }
     }
   }
 }
