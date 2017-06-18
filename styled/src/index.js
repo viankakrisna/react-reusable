@@ -2,7 +2,7 @@ import React from 'react';
 const STYLED_NAMESPACE = 'styled-namespace';
 const e = React.createElement;
 const appended = [];
-const crypto = require('crypto');
+const md5 = require('md5');
 
 const appendedScripts = document.head.querySelectorAll(STYLED_NAMESPACE);
 
@@ -21,7 +21,7 @@ export default function styled(Component) {
 			const className = [
 				Component.displayName || Component.name || 'styled',
 				//generates a unique identifier based on the css string
-				createHashFromString(interpolatedCSS),
+				md5(interpolatedCSS),
 			].join('_');
 
 			renderStyle(className, interpolatedCSS);
@@ -38,7 +38,7 @@ export default function styled(Component) {
 
 export function keyframes(css) {
 	const interpolated = css.raw.reduce(createRawCSSReducer());
-	const hash = ['keyframes', createHashFromString(interpolated)].join('_');
+	const hash = ['keyframes', md5(interpolated)].join('_');
 	const style = ['@keyframes ', hash, '{', interpolated, '}'].join('');
 	renderStyle(hash, style);
 	return hash;
@@ -76,8 +76,4 @@ function createRawCSSReducer(exp, props) {
 		res += string;
 		return res;
 	};
-}
-
-function createHashFromString(str) {
-	return crypto.createHash('md5').update(str).digest('hex');
 }
