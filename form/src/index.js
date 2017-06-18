@@ -1,5 +1,5 @@
 import React from 'react';
-import set from 'lodash/set';
+import set from 'lodash/fp/set';
 import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import isArray from 'lodash/isArray';
@@ -11,7 +11,7 @@ export default class Form extends React.Component {
 			onChange: e =>
 				this.setState({
 					response: false,
-					formData: set({ ...this.state.formData }, path, e.target.value),
+					formData: set(path, e.target.value, this.state.formData),
 				}),
 			value: get(this.state.formData, path, ''),
 			name: this.getName(path),
