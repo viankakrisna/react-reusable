@@ -11,6 +11,7 @@
     "umd"
   ],
   "scripts": {
+    "prepublish": "npm run build",
     "build": "nwb build-react-component",
     "clean": "nwb clean-module && npm clean-demo",
     "start": "nwb serve-react-demo",
@@ -20,7 +21,8 @@
     "format": "prettier --trailing-comma es5 --single-quote --write 'src/**/*.js' 'src/*/!(node_modules)/**/*.js'"
   },
   "dependencies": {
-    "history": "^4.6.2"
+    "history": "^4.6.2",
+    "md5": "^2.2.1"
   },
   "peerDependencies": {
     "react": "15.x",
