@@ -1,2 +1,3 @@
 import createHistory from "history/createBrowserHistory";
-export default createHistory();
+const history = createHistory();
+export default history

@@ -1,11 +1,11 @@
 import React from 'react';
-import PromiseComponent from './PromiseComponent';
+import Promised from './Promised';
 
 const createFetch = config => url =>
   global.fetch(url, config).then(res => res.json());
 
 const Fetch = props => (
-  <PromiseComponent
+  <Promised
     getPromise={props =>
       (props.url
         ? Array.isArray(props.url)
@@ -15,7 +15,7 @@ const Fetch = props => (
     {...props}
   >
     {props.children}
-  </PromiseComponent>
+  </Promised>
 );
 
 export default Fetch;

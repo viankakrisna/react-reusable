@@ -3,7 +3,7 @@ module.exports = {
   npm: {
     esModules: true,
     umd: {
-      global: 'Link',
+      global: 'Reusable',
       externals: {
         react: 'React'
       }

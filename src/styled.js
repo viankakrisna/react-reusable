@@ -5,8 +5,6 @@ const STYLED_NAMESPACE = 'styled-namespace';
 const e = React.createElement;
 const appended = [];
 
-const appendedScripts = document.head.querySelectorAll(STYLED_NAMESPACE);
-
 //styled-components wannabe! take a component
 export default function styled(Component) {
 	//then create tagged template literal for that component
@@ -46,13 +44,49 @@ export function keyframes(css) {
 }
 
 function renderStyle(className, interpolatedCSS) {
-	console.log(className);
 	//only append the style in the head if it's not there
 	const styleAppended = appended.includes(className);
 	if (!styleAppended) {
 		//create the style node
 		const style = document.createElement('style');
-		style.innerHTML = interpolatedCSS.replace(/&/g, '.' + className);
+		const cssClassName = '.' + className;
+		style.innerHTML = interpolatedCSS
+			.split('\n')
+			.map(e => e.trim())
+			.filter(Boolean)
+			.join('')
+			.split('}')
+			.filter(Boolean)
+			.map(
+				e =>
+					e.includes('{')
+						? e.includes('@')
+							? e
+									.split('@')
+									.map((e, index) => {
+										if (index) {
+											return e
+												.split('{')
+												.map((e, index, array) => {
+													switch (true) {
+														case index === 0:
+															return e + '{ & ';
+														case index === array.length - 1:
+															return e + '}';
+														default:
+															return e;
+													}
+												})
+												.join('{');
+										}
+										return `& {${e}}`
+									})
+									.join('@')
+							: `& ${e}`
+						: `&{${e}`
+			)
+			.join('}')
+			.replace(/&/g, cssClassName);
 		style.id = className;
 		style.className = STYLED_NAMESPACE;
 
