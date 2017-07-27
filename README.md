@@ -1,16 +1,16 @@
-# fetch-component
+# react-reusable
 
-```npm install --save fetch-component```
+```npm install --save react-reusable```
 
 or 
 
-```yarn add fetch-component```
+```yarn add react-reusable```
 
 ## Usage:
 
 ```
 import React from 'react'
-import Fetch from 'fetch-component'
+import Fetch from 'react-reusable/lib/Fetch'
 
 function Hello () {
   return (
@@ -32,7 +32,7 @@ You can find it in the demo folder
 import React from 'react';
 import { render } from 'react-dom';
 
-import Fetch from 'fetch-component';
+import Fetch from 'react-reusable/lib/Fetch';
 
 const Box = props => (
   <div style={{ float: 'left', width: `${100 / 4}%` }}>
