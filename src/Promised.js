@@ -82,7 +82,10 @@ class PromiseComponent extends React.Component {
       }
 
       if (this.state.data && this.props.onSuccess) {
-        return this.props.onSuccess(this.state.data, this.retryPromiseWithNewProps);
+        return this.props.onSuccess(
+          this.state.data,
+          this.retryPromiseWithNewProps
+        );
       }
     } catch (e) {
       return this.props.onError(e, this.retryPromiseWithNewProps);
