@@ -5,6 +5,11 @@
 or 
 
 ```yarn add react-reusable```
+## What?
+This is a set of React components that handles data fetching (&lt;Fetch /&gt;), posting ((&lt;Form /&gt;)), and navigation ((&lt;Link /&gt;)). The bread and butter of every web apps.
+
+## Why?
+I use this pattern a lot, and I want to reduce boilerplate of writing the implementation of data fetching and posting in React apps.
 
 ## Usage:
 
