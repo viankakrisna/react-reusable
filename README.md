@@ -11,7 +11,7 @@ This is a set of React components that handles data fetching (&lt;Fetch /&gt;), 
 ## Why?
 I use this pattern a lot, and I want to reduce boilerplate of writing the implementation of data fetching and posting in React apps.
 
-## Fetch Usage:
+## Fetch Example:
 
 ```
 import React from 'react'
@@ -31,8 +31,11 @@ function Hello () {
 export default Hello
 ```
 
-## Form Usage:
+## Form Example:
 ```
+import React from 'react'
+import Form from 'react-reusable/lib/Form';
+
 const handleSubmit = formData =>
   new Promise(resolve => setTimeout(() => resolve(formData), 1500));
 
@@ -48,10 +51,10 @@ const showFile = (key, value) =>
     : value;
 
 const renderFieldset = (state, bind) =>
-  <Fieldset style={{ opacity: state.loading ? 0.5 : 1 }}>
-    <Input {...bind('name')} type="text" />
-    <Input {...bind(['email', 0])} type="text" />
-    <Input
+  <fieldset style={{ opacity: state.loading ? 0.5 : 1 }}>
+    <input {...bind('name')} type="text" />
+    <input {...bind(['email', 0])} type="text" />
+    <input
       onChange={e =>
         bind(['profile', 'avatar']).onChange({
           target: {
@@ -61,11 +64,11 @@ const renderFieldset = (state, bind) =>
         })}
       type="file"
     />
-    <Button>Submit</Button>
-    <Pre>
+    <button>Submit</button>
+    <pre>
       {JSON.stringify(state, showFile, 2)}
-    </Pre>
-  </Fieldset>;
+    </pre>
+  </fieldset>;
 
 const ReusableForm = props =>
   <div>
