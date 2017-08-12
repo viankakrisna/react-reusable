@@ -11,7 +11,7 @@ This is a set of React components that handles data fetching (&lt;Fetch /&gt;), 
 ## Why?
 I use this pattern a lot, and I want to reduce boilerplate of writing the implementation of data fetching and posting in React apps.
 
-## Usage:
+## Fetch Usage:
 
 ```
 import React from 'react'
@@ -31,7 +31,56 @@ function Hello () {
 export default Hello
 ```
 
-## Advanced usage
+## Form Usage:
+```
+const handleSubmit = formData =>
+  new Promise(resolve => setTimeout(() => resolve(formData), 1500));
+
+const showFile = (key, value) =>
+  value instanceof File
+    ? {
+        lastModified: value.lastModified,
+        lastModifiedDate: value.lastModifiedDate,
+        name: value.name,
+        size: value.size,
+        type: value.type,
+      }
+    : value;
+
+const renderFieldset = (state, bind) =>
+  <Fieldset style={{ opacity: state.loading ? 0.5 : 1 }}>
+    <Input {...bind('name')} type="text" />
+    <Input {...bind(['email', 0])} type="text" />
+    <Input
+      onChange={e =>
+        bind(['profile', 'avatar']).onChange({
+          target: {
+            name: e.target.name,
+            value: e.target.files[0],
+          },
+        })}
+      type="file"
+    />
+    <Button>Submit</Button>
+    <Pre>
+      {JSON.stringify(state, showFile, 2)}
+    </Pre>
+  </Fieldset>;
+
+const ReusableForm = props =>
+  <div>
+    <h1>Reusable Form Demo</h1>
+    <Form
+      onSubmit={handleSubmit}
+      formData={{
+        email: ['test@test.com'],
+      }}
+      children={renderFieldset}
+    />
+  </div>;
+  ```
+
+## Fetch - Advanced usage
 You can find it in the demo folder
 ```
 import React from 'react';
