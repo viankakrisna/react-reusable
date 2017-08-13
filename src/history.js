@@ -1,3 +1,6 @@
 import createHistory from "history/createBrowserHistory";
-const history = createHistory();
+let history = {}
+if (typeof window !== undefined) {
+	history = createHistory();
+}
 export default history
