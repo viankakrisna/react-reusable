@@ -18,7 +18,7 @@
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
-    "format": "prettier --trailing-comma es5 --single-quote --write 'src/**/*.js' 'src/*/!(node_modules)/**/*.js'"
+    "format": "prettier --trailing-comma es5 --single-quote --write 'src/**/*.js' 'src/*/!(node_modules)/**/*.js' 'demo/src/**/*.js'"
   },
   "dependencies": {
     "history": "^4.6.2",
