@@ -22,11 +22,12 @@
   },
   "dependencies": {
     "history": "^4.6.2",
+    "lodash": "^4.17.4",
     "md5": "^2.2.1"
   },
   "peerDependencies": {
-    "react": "15.x",
-    "lodash": "4.x"
+    "lodash": "4.x",
+    "react": "15.x"
   },
   "devDependencies": {
     "gh-pages": "^0.12.0",
