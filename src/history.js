@@ -1,6 +1,6 @@
-import createHistory from "history/createBrowserHistory";
-let history = {}
+import createHistory from 'history/createBrowserHistory';
+let history = {};
 if (typeof window !== 'undefined') {
-	history = createHistory();
+  history = createHistory();
 }
-export default history
+export default history;
