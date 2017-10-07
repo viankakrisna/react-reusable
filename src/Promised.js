@@ -13,7 +13,15 @@ class PromiseComponent extends React.Component {
   getPromise = props => {
     let hash;
     if (props.cache) {
-      hash = btoa(JSON.stringify(props));
+      try {
+        hash = btoa(JSON.stringify(props));
+      } catch (e) {
+        console.error(
+          'Please use a seriazable props when you enable cache',
+          props,
+          e
+        );
+      }
     }
     this.update({
       canceled: false,
