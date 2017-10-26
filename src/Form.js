@@ -37,7 +37,7 @@ export default class Form extends React.Component {
     const { fields, children } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
-        {isArray(fields) ? fields.map(this.renderFields) : null}
+        {isArray(fields) ? fields.map(this.props.renderFields || this.props.children) : null}
         {isFunction(children)
           ? children(this.state, this.bindFormData)
           : children}
