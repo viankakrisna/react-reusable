@@ -1,6 +1,6 @@
 {
   "name": "react-reusable",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "react-reusable React component",
   "main": "lib/index.js",
   "module": "es/index.js",
