@@ -40,7 +40,7 @@ class PromiseComponent extends React.Component {
     );
   };
 
-  retryPromiseWithNewProps = newProps =>
+  reload = newProps =>
     this.getPromise({
       ...this.props,
       ...newProps,
@@ -71,7 +71,7 @@ class PromiseComponent extends React.Component {
   render() {
     try {
       if (this.state.canceled && this.props.onCancel) {
-        return this.props.onCancel(this.props, this.retryPromiseWithNewProps);
+        return this.props.onCancel(this.props, this.reload);
       }
 
       if (this.props.children) {
@@ -85,18 +85,18 @@ class PromiseComponent extends React.Component {
       if (this.state.error && this.props.onError) {
         return this.props.onError(
           this.state.error,
-          this.retryPromiseWithNewProps
+          this.reload
         );
       }
 
       if (this.state.data && this.props.onSuccess) {
         return this.props.onSuccess(
           this.state.data,
-          this.retryPromiseWithNewProps
+          this.reload
         );
       }
     } catch (e) {
-      return this.props.onError(e, this.retryPromiseWithNewProps);
+      return this.props.onError(e, this.reload);
     }
 
     return null;
