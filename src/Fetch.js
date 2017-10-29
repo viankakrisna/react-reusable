@@ -16,13 +16,13 @@ const Fetch = props => (
           ? Promise.all(props.url.map(createFetch(props.config)))
           : createFetch(props.config)(props.url)
         : Promise.resolve()).then(res => {
-          if (isFunction(props.successHandler)) {
-            props.successHandler(res)
+          if (isFunction(props.handleSuccess)) {
+            props.handleSuccess(res)
           }
           return res
         }, (err) => {
-          if (isFunction(props.errorHandler)) {
-            props.errorHandler(err)
+          if (isFunction(props.handleError)) {
+            props.handleError(err)
             return err
           }
           throw err
