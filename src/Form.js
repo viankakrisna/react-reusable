@@ -15,7 +15,15 @@ export default class Form extends React.Component {
 			onChange: e =>
 				this.setState({
 					response: false,
-					formData: set(path, e.target.value, this.state.formData),
+					formData: set(
+						path,
+						get(
+							e,
+							'target.files[0]',
+							get(e, 'currentTarget.files[0]', get(e, 'target.value', get(e, 'currentTarget.value')))
+						),
+						this.state.formData
+					),
 				}),
 			value: get(this.state.formData, path, ''),
 			name: this.getName(path),
