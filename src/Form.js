@@ -10,21 +10,32 @@ export default class Form extends React.Component {
 		formData: { ...this.props.formData },
 		response: false,
 	};
+	getValue = e => {
+		const value = get(
+			e,
+			'target.files[0]',
+			get(e, 'currentTarget.files[0]', get(e, 'target.value', get(e, 'currentTarget.value')))
+		);
+		if (value instanceof File) {
+			return value;
+		}
+		try {
+			return JSON.parse(value);
+		} catch (e) {
+			return value;
+		}
+	};
 	bindFormData = path => {
 		return {
-			onChange: e =>
+			onChange: e => {
+				if (e && e.persist) {
+					e.persist();
+				}
 				this.setState({
 					response: false,
-					formData: set(
-						path,
-						get(
-							e,
-							'target.files[0]',
-							get(e, 'currentTarget.files[0]', get(e, 'target.value', get(e, 'currentTarget.value')))
-						),
-						this.state.formData
-					),
-				}),
+					formData: set(path, this.getValue(e), this.state.formData),
+				});
+			},
 			value: get(this.state.formData, path, ''),
 			name: this.getName(path),
 		};
