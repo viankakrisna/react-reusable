@@ -2,11 +2,12 @@ import React from "react";
 
 const merge = Object.assign;
 
-export default (initialState, handleUpdate) => {
+export default (state, handleUpdate) => {
   const subscribers = [];
-  const currentState = merge(initialState, {
+  const currentState = merge(state, {
     set: (...args) => {
       subscribers.forEach(subscriber => subscriber.setState(...args));
+      return state;
     }
   });
 
@@ -16,8 +17,17 @@ export default (initialState, handleUpdate) => {
         Component.displayName})`;
       state = currentState;
 
+      handleUpdate = oldState => {
+        if (typeof handleUpdate === "function") {
+          handleUpdate(this.state, oldState);
+        }
+      };
+
       componentWillMount() {
-        subscribers.push(this);
+        if (subscribers.indexOf(this) === -1) {
+          subscribers.push(this);
+          this.handleUpdate(this.props);
+        }
       }
       componentWillUnmount() {
         subscribers.splice(subscribers.indexOf(this), 1);
@@ -25,9 +35,7 @@ export default (initialState, handleUpdate) => {
       componentDidUpdate(_, oldState) {
         if (subscribers.indexOf(this) === 0) {
           merge(currentState, this.state);
-          if (typeof handleUpdate === "function") {
-            handleUpdate(this.state, oldState);
-          }
+          this.handleUpdate(oldState);
         }
       }
       render() {
