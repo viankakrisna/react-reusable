@@ -22,8 +22,7 @@
   },
   "dependencies": {
     "history": "^4.7.2",
-    "lodash": "^4.17.4",
-    "md5": "^2.2.1"
+    "lodash": "^4.17.4"
   },
   "peerDependencies": {
     "lodash": "4.x",
