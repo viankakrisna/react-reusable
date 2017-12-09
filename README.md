@@ -2,7 +2,7 @@
 
 ```npm install --save react-reusable```
 
-or 
+or
 
 ```yarn add react-reusable```
 ## What?
@@ -12,15 +12,15 @@ This is a set of React components that handles data fetching (&lt;Fetch /&gt;), 
 I use this pattern a lot, and I want to reduce boilerplate of writing the implementation of data fetching and posting in React apps.
 
 ## Fetch Example:
+```js
 
-```
 import React from 'react'
 import Fetch from 'react-reusable/lib/Fetch'
 
 function Hello () {
   return (
     <div>
-      <h1>Hello from React</h1> 
+      <h1>Hello from React</h1>
       <Fetch url={'https://api.github.com/user/repos'}>
         {data => <p>{data.message}</p>}
       </Fetch>
@@ -32,7 +32,7 @@ export default Hello
 ```
 
 ## Form Example:
-```
+```js
 import React from 'react'
 import Form from 'react-reusable/lib/Form';
 
@@ -85,7 +85,7 @@ const ReusableForm = props =>
 
 ## Fetch - Advanced usage
 You can find it in the demo folder
-```
+```js
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -170,5 +170,3 @@ let Demo = props => (
 
 render(<Demo />, document.querySelector('#demo'));
 ```
-
-
