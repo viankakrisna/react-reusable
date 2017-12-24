@@ -9,24 +9,28 @@ const Fetch = props => (
   <Promised
     getPromise={props => {
       if (isFunction(props.handleLoading)) {
-        props.handleLoading(props)
+        props.handleLoading(props);
       }
       return (props.url
         ? Array.isArray(props.url)
           ? Promise.all(props.url.map(createFetch(props.config)))
           : createFetch(props.config)(props.url)
-        : Promise.resolve()).then(res => {
+        : Promise.resolve()
+      ).then(
+        res => {
           if (isFunction(props.handleSuccess)) {
-            props.handleSuccess(res)
+            props.handleSuccess(res);
           }
-          return res
-        }, (err) => {
+          return res;
+        },
+        err => {
           if (isFunction(props.handleError)) {
-            props.handleError(err)
-            return err
+            props.handleError(err);
+            return err;
           }
-          throw err
-        })
+          throw err;
+        }
+      );
     }}
     {...props}
   >

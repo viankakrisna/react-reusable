@@ -1,7 +1,7 @@
-import React from "react";
-import { Form } from "../../src";
-import { Button, Input } from "./styles";
-import { connect } from "./state";
+import React from 'react';
+import { Form } from '../../src';
+import { Button, Input } from './styles';
+import { connect } from './state';
 
 const Todo = connect(state => (
   <div>
@@ -10,8 +10,9 @@ const Todo = connect(state => (
         state.todosTextInput &&
         state.addTodos({
           id: Date.now(),
-          value: state.todosTextInput
-        })}
+          value: state.todosTextInput,
+        })
+      }
     >
       <Input
         value={state.todosTextInput}

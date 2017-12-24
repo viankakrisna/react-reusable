@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const merge = Object.assign;
 
@@ -8,7 +8,7 @@ export default (state, handleUpdate) => {
     set: (...args) => {
       subscribers.forEach(subscriber => subscriber.setState(...args));
       return state;
-    }
+    },
   });
 
   return function connect(Component) {
@@ -18,7 +18,7 @@ export default (state, handleUpdate) => {
       state = currentState;
 
       handleUpdate = oldState => {
-        if (typeof handleUpdate === "function") {
+        if (typeof handleUpdate === 'function') {
           handleUpdate(this.state, oldState);
         }
       };

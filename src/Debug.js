@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-const getName = props => (props.name ? props.name + " " : "");
+const getName = props => (props.name ? props.name + ' ' : '');
 
 export default ({ it, ...props }) =>
   React.createElement(
-    "pre",
+    'pre',
     props,
     getName(props) + JSON.stringify(it, null, 2)
   );
