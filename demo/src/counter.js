@@ -1,6 +1,6 @@
-import React from "react";
-import { connect } from "./state";
-import { Center, Button, Card1 } from "./styles";
+import React from 'react';
+import { connect } from './state';
+import { Center, Button, Card1 } from './styles';
 const Counter = connect(state => (
   <Card1>
     <Center>
