@@ -30,15 +30,16 @@ export default class Form extends React.Component {
 		response: false,
 	};
 	update = (...args) => {
-		const { update, mounted } = this;
+		const { mounted } = this;
 		if (mounted) {
-			update(...args);
+			this.setState(...args);
 		}
 	};
 	bindFormData = path => {
 		const { update, state } = this;
+		const value = get(state.formData, path, '');
 		return {
-			value: get(state.formData, path, ''),
+			value: value instanceof File ? undefined : value,
 			name: getName(path),
 			onChange: e => {
 				if (e && e.persist) {
