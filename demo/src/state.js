@@ -1,5 +1,4 @@
 import { createState, history, dump, difference } from '../../src';
-import _ from 'lodash';
 
 export const state = {
   history,
