@@ -1,10 +1,12 @@
-import React from "react";
-import { AsyncList, styled } from "../../src";
-import { Button, Card1 } from "./styles";
+import React from 'react';
+import { AsyncList, styled } from '../../src';
+import { Button, Card1 } from './styles';
 
-const Box = styled("div")`padding: 1em;`;
-const JSON_URL = "https://jsonplaceholder.typicode.com/posts";
-const WRONG_JSON_URL = "https://jsonplaceholder.typicode.com/poss";
+const Box = styled('div')`
+  padding: 1em;
+`;
+const JSON_URL = 'https://jsonplaceholder.typicode.com/posts';
+const WRONG_JSON_URL = 'https://jsonplaceholder.typicode.com/poss';
 
 const urls = [
   JSON_URL,
@@ -13,7 +15,7 @@ const urls = [
   JSON_URL,
   JSON_URL,
   JSON_URL,
-  JSON_URL
+  JSON_URL,
 ];
 
 const FetchExample = props => (
@@ -23,7 +25,7 @@ const FetchExample = props => (
       <h2>Multiple JSON_URL</h2>
       <AsyncList
         url={urls}
-        onLoading={props => <p>Loading {props.url.join(", ")}</p>}
+        onLoading={props => <p>Loading {props.url.join(', ')}</p>}
       />
     </Box>
     <Box>
@@ -46,8 +48,9 @@ const FetchExample = props => (
               onClick={e =>
                 reload({
                   ...props,
-                  url: JSON_URL
-                })}
+                  url: JSON_URL,
+                })
+              }
             >
               Reload?
             </Button>

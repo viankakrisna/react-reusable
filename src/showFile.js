@@ -5,7 +5,7 @@ const showFile = (key, value) =>
         lastModifiedDate: value.lastModifiedDate,
         name: value.name,
         size: value.size,
-        type: value.type
+        type: value.type,
       }
     : value;
 export default showFile;

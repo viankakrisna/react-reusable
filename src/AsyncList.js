@@ -5,11 +5,14 @@ const mapList = props => (data, reload) => (
     <ul>
       {data.map(
         (post, index) =>
-          (Array.isArray(post)
-            ? <li key={index}>{index}{mapList(props)(post)}</li>
-            : <li key={post.id}>
-                {post.title}
-              </li>)
+          Array.isArray(post) ? (
+            <li key={index}>
+              {index}
+              {mapList(props)(post)}
+            </li>
+          ) : (
+            <li key={post.id}>{post.title}</li>
+          )
       )}
     </ul>
     <button onClick={e => reload(props)}>Reload</button>
@@ -33,12 +36,8 @@ const AsyncList = props => (
     )}
     onError={(error, reload) => (
       <div>
-        <p>
-          Error!
-        </p>
-        <pre>
-          {error.message}
-        </pre>
+        <p>Error!</p>
+        <pre>{error.message}</pre>
         <button onClick={e => reload(props)}>Reload?</button>
       </div>
     )}
@@ -46,4 +45,4 @@ const AsyncList = props => (
   />
 );
 
-export default AsyncList
+export default AsyncList;

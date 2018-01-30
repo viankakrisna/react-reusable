@@ -1,17 +1,17 @@
-import { Link, styled } from "../../src";
+import { Link, styled } from '../../src';
 
-const height = "2.5em";
+const height = '2.5em';
 
 export const theme = {
   background: {
-    primary: "indigo"
+    primary: 'indigo',
   },
   color: {
-    primary: "white"
-  }
+    primary: 'white',
+  },
 };
 
-export const App = styled("div")`
+export const App = styled('div')`
   box-sizing: border-box;
   padding: 1em;
   padding-top: 5em;
@@ -20,7 +20,7 @@ export const App = styled("div")`
   min-height: 100vh;
 `;
 
-export const Header = styled("div")`
+export const Header = styled('div')`
   position: fixed;
   top: 0;
   left: 0;
@@ -46,34 +46,36 @@ export const HeaderLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const Fieldset = styled("fieldset")`
+export const Fieldset = styled('fieldset')`
   padding: 1em;
   border: 1px solid #eee;
   border-radius: 2px;
   box-sizing: border-box;
 `;
 
-export const Input = styled("input")`
-  display: block;
-  height: ${height};
-  font-size: inherit;
-  padding: 0 0.5em;
-  margin-bottom: 1em;
-  border: 0;
-  box-sizing: border-box;
-  border-bottom: 1px solid #ddd;
-  width: 100%;
-  position: relative;
-  outline: none;
+export const inputStyle = `
+display: block;
+height: 2.5em;
+font-size: inherit;
+padding: 0 0.5em;
+margin-bottom: 1em;
+border: 0;
+box-sizing: border-box;
+border-bottom: 1px solid #ddd;
+width: 100%;
+position: relative;
+outline: none;
 
-  &:before {
-    content: attr(placeholder);
-    position: absolute;
-    top: -0.5em;
-  }
+&:before {
+  content: attr(placeholder);
+  position: absolute;
+  top: -0.5em;
+}
 `;
 
-export const Button = styled("button")`
+export const Input = styled('input')(inputStyle);
+
+export const Button = styled('button')`
   display: block;
   width: 100%;
   height: ${height};
@@ -83,18 +85,20 @@ export const Button = styled("button")`
   font-size: inherit;
   line-height: 1em;
   border: 0;
-  background: ${props => theme.background[props.kind] || "transparent"};
-  color: ${props => theme.color[props.kind] || "inherit"};
+  background: ${props => theme.background[props.kind] || 'transparent'};
+  color: ${props => theme.color[props.kind] || 'inherit'};
   border-radius: 2px;
   letter-spacing: 2px;
   transition: 250ms;
 `;
 
-export const Textarea = Input.withComponent("textarea");
+export const Textarea = styled('textarea')(inputStyle);
 
-export const Center = styled("div")`text-align: center;`;
+export const Center = styled('div')`
+  text-align: center;
+`;
 
-export const Card = styled("div")`
+export const Card = styled('div')`
   background: #fff;
   border-radius: 2px;
   position: relative;
