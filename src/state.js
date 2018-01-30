@@ -1,10 +1,8 @@
 import React from "react";
 
-const merge = Object.assign;
-
 export default (state, handleUpdate) => {
   const subscribers = [];
-  const currentState = merge(state, {
+  const currentState = Object.assign(state, {
     set: (...args) => {
       subscribers.forEach(subscriber => subscriber.setState(...args));
       return state;
@@ -34,7 +32,7 @@ export default (state, handleUpdate) => {
       }
       componentDidUpdate(_, oldState) {
         if (subscribers.indexOf(this) === 0) {
-          merge(currentState, this.state);
+          Object.assign(currentState, this.state);
           this.handleUpdate(oldState);
         }
       }
