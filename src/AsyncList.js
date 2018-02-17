@@ -1,23 +1,31 @@
-import React from 'react';
-import Fetch from './Fetch';
-const mapList = props => (data, reload) => (
-  <div>
-    <ul>
-      {data.map(
-        (post, index) =>
-          Array.isArray(post) ? (
-            <li key={index}>
-              {index}
-              {mapList(props)(post)}
-            </li>
-          ) : (
-            <li key={post.id}>{post.title}</li>
-          )
-      )}
-    </ul>
-    <button onClick={e => reload(props)}>Reload</button>
-  </div>
-);
+import React from "react";
+import Fetch from "./Fetch";
+const mapList = props => (data, reload) => {
+  const { List, Item, ReloadButton, Wrapper } = {
+    List: "ul",
+    Item: ({item}) => <li>{item && item.title}</li>,
+    ReloadButton: "button",
+    Wrapper: "div",
+    ...props.components
+  };
+  return (
+    <Wrapper>
+      <List>
+        {data.map(
+          (item, index) =>
+            Array.isArray(item) ? (
+              <Item key={index}>
+                {mapList(props)(item)}
+              </Item>
+            ) : (
+              <Item key={item.id} item={item} />
+            )
+        )}
+      </List>
+      <ReloadButton onClick={e => reload(props)}>Reload</ReloadButton>
+    </Wrapper>
+  );
+};
 
 const AsyncList = props => (
   <Fetch

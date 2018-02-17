@@ -1,7 +1,6 @@
-import { createState, history, dump, difference } from '../../src';
+import { createState, dump, difference } from '../../src';
 
 export const state = {
-  history,
   counter: 0,
   todos: [],
   todosTextInput: '',
@@ -23,8 +22,4 @@ export const state = {
 export const connect = createState(state, (oldState, newState) => {
   console.log('BEFORE', dump(difference(newState, oldState)));
   console.log('AFTER', dump(difference(oldState, newState)));
-});
-
-history.listen(() => {
-  state.set({ history: { ...history } });
 });

@@ -4,6 +4,7 @@ export { default as AsyncList } from './AsyncList';
 export { default as Form } from './Form';
 export { default as Link } from './Link';
 export { default as Debug } from './Debug';
+export { default as Route } from './Route';
 
 export { default as history } from './history';
 export { default as styled } from './styled';

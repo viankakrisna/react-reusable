@@ -1,8 +1,11 @@
 import React from 'react';
+import history from './history';
+const subscribers = [];
+const container = {};
 
 export default (state, handleUpdate) => {
-  const subscribers = [];
-  const currentState = Object.assign(state, {
+  Object.assign(container, state, {
+    history,
     set: (...args) => {
       subscribers.forEach(subscriber => subscriber.setState(...args));
       return state;
@@ -13,7 +16,7 @@ export default (state, handleUpdate) => {
     return class extends React.PureComponent {
       static displayName = `connected(${Component.name ||
         Component.displayName})`;
-      state = currentState;
+      state = container;
 
       handleUpdate = oldState => {
         if (typeof handleUpdate === 'function') {
@@ -31,8 +34,8 @@ export default (state, handleUpdate) => {
         subscribers.splice(subscribers.indexOf(this), 1);
       }
       componentDidUpdate(_, oldState) {
-        if (subscribers.indexOf(this) === 0) {
-          Object.assign(currentState, this.state);
+        if (subscribers.includes(this)) {
+          Object.assign(container, this.state);
           this.handleUpdate(oldState);
         }
       }
@@ -42,3 +45,7 @@ export default (state, handleUpdate) => {
     };
   };
 };
+
+history.listen(() => {
+  container.set({ history: { ...history } });
+});
