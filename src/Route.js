@@ -5,11 +5,11 @@ const Route = connect(
     (exact ? (
       history.location.pathname === pathname
     ) : (
-        history.location.pathname.match(new RegExp(pathname))
-      )) ? (
-        <React.Fragment>{children}</React.Fragment>
-      ) : null
+      history.location.pathname.match(new RegExp(pathname))
+    )) ? (
+      <React.Fragment>{children}</React.Fragment>
+    ) : null
 );
 
-Route.displayName = "Route";
+Route.displayName = 'Route';
 export default Route;

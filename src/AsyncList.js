@@ -1,12 +1,12 @@
-import React from "react";
-import Fetch from "./Fetch";
+import React from 'react';
+import Fetch from './Fetch';
 const mapList = props => (data, reload) => {
   const { List, Item, ReloadButton, Wrapper } = {
-    List: "ul",
-    Item: ({item}) => <li>{item && item.title}</li>,
-    ReloadButton: "button",
-    Wrapper: "div",
-    ...props.components
+    List: 'ul',
+    Item: ({ item }) => <li>{item && item.title}</li>,
+    ReloadButton: 'button',
+    Wrapper: 'div',
+    ...props.components,
   };
   return (
     <Wrapper>
@@ -14,9 +14,7 @@ const mapList = props => (data, reload) => {
         {data.map(
           (item, index) =>
             Array.isArray(item) ? (
-              <Item key={index}>
-                {mapList(props)(item)}
-              </Item>
+              <Item key={index}>{mapList(props)(item)}</Item>
             ) : (
               <Item key={item.id} item={item} />
             )
