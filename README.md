@@ -170,3 +170,6 @@ let Demo = props => (
 
 render(<Demo />, document.querySelector('#demo'));
 ```
+
+## License
+React Reusable is open source software licensed as MIT.
